@@ -8,8 +8,8 @@ penguinpromise.then(function(penguins){
     }
 )
 
-var screen = {width:400, height:500}
-var margins = {top:10, bottom:50, left:50, right:50}
+var screen = {width:700, height:600}
+var margins = {top:10, bottom:50, left:25, right:50}
 
 var setup= function(array2D)
 {
@@ -95,7 +95,7 @@ var drawArray= function(array2D, xScale, yScale, cScale, index)
         console.log(num)
      return yScale(num.grade)   
     })
-    .attr("r", 3)
+    .attr("r", 5)
     }
         
     
