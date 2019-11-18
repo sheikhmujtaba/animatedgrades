@@ -57,6 +57,20 @@ var setup= function(array2D)
     .data(array2D[0].quizes)
     .enter()
     .append("circle")
+    .on("mouseover", function(d)
+        {
+            var label = "(Day:" + d.day + ", Grade:" + d.grade + ")";
+            d3.select("#tooltip")
+                .text(label)
+                .style("left", (d3.event.pageX + 10) + "px")
+                .style("top", (d3.event.pageY - 30) + "px")
+                .classed("hidden", false);
+        })
+        .on("mouseout", function()
+        {
+            d3.select("#tooltip")
+                .classed("hidden", true);
+        })
     .attr("cx", function(num, index)
     {
           return xScale(index)
@@ -65,7 +79,7 @@ var setup= function(array2D)
         console.log(num)
      return yScale(num.grade)   
     })
-    .attr("r", 3)
+    .attr("r", 5)
     
     d3.select("#buttons")
     .selectAll("button")
@@ -86,7 +100,8 @@ var drawArray= function(array2D, xScale, yScale, cScale, index)
     var arrays = d3.select("#graph")
     .selectAll("circle")
     .data(array2D[index].quizes)
-    
+    .transition()
+    .duration(1500)
     .attr("cx", function(num, index)
     {
           return xScale(index)
@@ -96,6 +111,6 @@ var drawArray= function(array2D, xScale, yScale, cScale, index)
      return yScale(num.grade)   
     })
     .attr("r", 5)
-    }
-        
-    
+      
+}
+
